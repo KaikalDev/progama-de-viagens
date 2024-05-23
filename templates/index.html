@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LKR - Viagens</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/dist/css/main.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="title">LKR - Viagens</h1>
+            <ul class="header__list">
+                <li class="header__list__item">
+                    <button class="header__list__button button">LOGIN</button>
+                </li>
+                <li class="header__list__item">
+                    <button class="header__list__button button">CADASTRO</button>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <hr>
+    <section class="cadastro">
+        <div class="container">
+            <div class="container__cadastro">
+                <h1 class="title">Cadastro</h1>
+                <ul class="cadastro__form__input">
+                    <li class="cadastro__form__item">
+                        <label class="cadastro__label" for="usuario">Digite seu usuario: </label>
+                        <input class="cadastro__input" type="text" id="usuario">
+                    </li>
+                    <li class="cadastro__form__item">
+                        <label class="cadastro__label" for="email">Digite seu E-mail: </label>
+                        <input class="cadastro__input" type="email" id="email">
+                    </li>
+                    <li class="cadastro__form__item">
+                        <label class="cadastro__label" for="senha">Digite sua senha: </label>
+                        <input class="cadastro__input" type="text" id="senha">
+                    </li>
+                    <li class="cadastro__form__item">
+                        <label class="cadastro__label" for="c_senha">Comfirme sua senha: </label>
+                        <input type="password" id="c_senha">
+                    </li>
+                </ul>
+                <div class="cadastro__form__btn">
+                    <button class="cadastro__form__btn__button button" type="submit">Cadastrar</button>
+                    <button  class="cadastro__form__btn__a" type="button"><a class="cadastro__form__btn__a" href="">Ja tem um cadastro ?</a></button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </section>   
+    <section class="login">
+        <div class="container">
+            <div class="container__login">
+                <h1 class="title">Login</h1>
+                <ul class="login__form__input">
+                    <li class="login__form__item">
+                        <label class="login__label" for="usuario">Usuario: </label>
+                        <input class="login__input" type="text" id="usuario">
+                    </li>
+                    <li class="login__form__item">
+                        <label class="login__label" for="senha">Senha: </label>
+                        <input type="password" id="senha">
+                    </li>
+                </ul>
+                <div class="login__form__btn">
+                    <button class="login__form__btn__button button" type="submit">Login</button>
+                    <button  class="login__form__btn__a" type="button"><a class="cadastro__form__btn__a" href="">Ainda não tem um cadastro ?</a></button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </section>
+    <section class="login">
+        <div class="container">
+            <div class="container__login">
+                <h1 class="title">Adicionar vaigem</h1>
+                <ul class="login__form__input">
+                    <li class="login__form__item">
+                        <label class="login__label" for="usuario">Destino: </label>
+                        <input class="login__input" type="text" id="usuario">
+                    </li>
+                    <li class="login__form__item">
+                        <label class="login__label" for="data">Data de partida: </label>
+                        <input type="date" id="data">
+                    </li>
+                    <li class="login__form__item">
+                        <label class="login__label" for="data">Data de chegada: </label>
+                        <input type="date" id="data">
+                    </li>
+                    <li class="login__form__chack">
+                        <input type="checkbox" name="Trabalho" id="Trabalho">
+                        <label class="login__label" for="Trabalho">Viagem a trabalho</label>
+                        <input type="checkbox" name="lazer" id="lazer">
+                        <label class="login__label" for="lazer">Viagem a lazer</label>
+                    </li>
+                </ul>
+                <div class="login__form__btn">
+                    <button class="login__form__btn__button button" type="submit">Adicionar</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </section>   
+    <section class="header__cards">
+        <div class="container">
+            <div class="card__header">
+                <ul class="card__header__lista">
+                    <li class="card__header__lista__item">
+                        <label class="card__header__lista__label" for="filtro">Ordenar: </label>
+                        <select class="card__header__lista__select" name="filtro" id="filtro">
+                            <option value="0"></option>
+                            <option value="1">Data de partida</option>
+                            <option value="2">Data de chegada</option>
+                            <option value="3">Distino</option>
+                        </select>
+                    </li>
+                    <li class="card__header__lista__item">
+                        <label class="card__header__lista__label" for="filtro">Filtrar: </label>
+                        <select class="card__header__lista__select" name="filtro" id="filtro">
+                            <option value="0"></option>
+                            <option value="1">Internacionais</option>
+                            <option value="2">Nacionais</option>
+                            <option value="3">Trabalho</option>
+                            <option value="4">Lazer</option>
+                        </select>
+                    </li>
+                    <li class="card__header__lista__item">
+                        <button class="card__header__lista__button button">+ Adicionar viagem</button>
+                    </li>
+                </ul>
+            </div>
+            <div class="card">
+                <ul class="card__lista">
+                    <li class="card__item">
+                        <h1>Destino: <span>Patos</span></h1>
+                        <h1>Data da viagem: <span>10/06/2024</span></h1>
+                        <h1>Data da chegada: <span>15/06/2024</span></h1>
+                        <picture>
+                            <i><img src="/templates/icon/briefcase-fill.svg" alt="Trabalho" title="Trabalho"></i>
+                            <i><img src="/templates/icon/geo-alt-fill.svg" alt="Nacional" title="Nacional"></i>
+                            <i><img src="/templates/icon/globe-americas.svg" alt="Internacional" title="Internacional"></i>
+                            <i><img src="/templates/icon/sunglasses.svg" alt="Lazer" title="Lazer"></i>
+                        </picture>
+                    </li>
+                    <li class="card__item">
+                        <h1>Destino: </h1>
+                        <h1>Data da viagem: </h1>
+                        <h1>Data da chegada: </h1>
+                        <picture>
+                            <i><img src="/icon/briefcase-fill.svg" alt="Trabalho" title="Trabalho"></i>
+                            <i><img src="/icon/geo-alt-fill.svg" alt="Nacional" title="Nacional"></i>
+                            <i><img src="/icon/globe-americas.svg" alt="Internacional" title="Internacional"></i>
+                            <i><img src="/icon/sunglasses.svg" alt="Lazer" title="Lazer"></i>
+                        </picture>
+                    </li>
+                    <li class="card__item">
+                        <h1>Destino: </h1>
+                        <h1>Data da viagem: </h1>
+                        <h1>Data da chegada: </h1>
+                        <picture>
+                            <i><img src="/icon/briefcase-fill.svg" alt="Trabalho" title="Trabalho"></i>
+                            <i><img src="/icon/geo-alt-fill.svg" alt="Nacional" title="Nacional"></i>
+                            <i><img src="/icon/globe-americas.svg" alt="Internacional" title="Internacional"></i>
+                            <i><img src="/icon/sunglasses.svg" alt="Lazer" title="Lazer"></i>
+                        </picture>
+                    </li>
+                    {% for chave_id, item in chaves.items() %}
+                        <li class="card__item">
+                            <h2>Destino: <span>{{ item[0] }}</span></h2>
+                            <h2>>Data da viagem: <span>{{ item[1] }}</span></h2>
+                            <h2>Data da chegada: <span>{{ item[2] }}</span></h2>
+                            <picture>
+                                {{ item[3] }}
+                                {{ item[4] }}
+                            </picture>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section class="Adiciona">
+        <div class="container">
+            <div class="container__Adiciona">
+                <h1 class="title">Adiciona</h1>
+                <form class="Adiciona__form__input" action="{{ url_for('add_item') }}" method="post">
+                    <div class="Adiciona__form__item">
+                        <label class="Adiciona__label" for="destino">Destino: </label>
+                        <input id="destino" name="destino" class="Adiciona__input" type="text">
+                    </div>
+                    <div class="Adiciona__form__item">
+                        <label class="Adiciona__label" for="data_ida">Data de partida: </label>
+                        <input type="date" id="data_ida" class="Adiciona__input">
+                    </div>
+                    <div class="Adiciona__form__item">
+                        <label class="Adiciona__label" for="data_volta">Data de retorno: </label>
+                        <input id="data_volta" name="data_volta" class="Adiciona__input" type="date">
+                    </div>
+                    <div class="Adiciona__form__btn">
+                        <input type="checkbox" id="nacional" name="nacional" placeholder="">
+                        <label for="nacional">nacional</label>
+                        <input type="checkbox" id="internacional" name="internacional" placeholder="">
+                        <label for="internacional">internacional</label>
+                    </div>
+                    <div class="Adiciona__form__btn">
+                        <input type="checkbox" id="trabalho" name="trabalho" placeholder="Tipo 2">
+                        <label for="trabalho">trabalho</label>
+                        <input type="checkbox" id="lazer" name="lazer" placeholder="Tipo 2">
+                        <label for="lazer">lazer</label>
+                    </div>
+                </form>
+                <button type="submit">Adicionar Viagem</button>
+            </form>
+            </div>
+        </div>
+    </section>  
+
+
+</body>
+</html>

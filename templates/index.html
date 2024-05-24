@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/dist/css/main.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 </head>
 <body>
     <header class="header">
@@ -75,38 +75,7 @@
             </form>
             </div>
         </div>
-    </section>
-    <section class="login">
-        <div class="container">
-            <div class="container__login">
-                <h1 class="title">Adicionar vaigem</h1>
-                <ul class="login__form__input">
-                    <li class="login__form__item">
-                        <label class="login__label" for="usuario">Destino: </label>
-                        <input class="login__input" type="text" id="usuario">
-                    </li>
-                    <li class="login__form__item">
-                        <label class="login__label" for="data">Data de partida: </label>
-                        <input type="date" id="data">
-                    </li>
-                    <li class="login__form__item">
-                        <label class="login__label" for="data">Data de chegada: </label>
-                        <input type="date" id="data">
-                    </li>
-                    <li class="login__form__chack">
-                        <input type="checkbox" name="Trabalho" id="Trabalho">
-                        <label class="login__label" for="Trabalho">Viagem a trabalho</label>
-                        <input type="checkbox" name="lazer" id="lazer">
-                        <label class="login__label" for="lazer">Viagem a lazer</label>
-                    </li>
-                </ul>
-                <div class="login__form__btn">
-                    <button class="login__form__btn__button button" type="submit">Adicionar</button>
-                </div>
-            </form>
-            </div>
-        </div>
-    </section>   
+    </section>  
     <section class="header__cards">
         <div class="container">
             <div class="card__header">
@@ -137,47 +106,14 @@
             </div>
             <div class="card">
                 <ul class="card__lista">
-                    <li class="card__item">
-                        <h1>Destino: <span>Patos</span></h1>
-                        <h1>Data da viagem: <span>10/06/2024</span></h1>
-                        <h1>Data da chegada: <span>15/06/2024</span></h1>
-                        <picture>
-                            <i><img src="/templates/icon/briefcase-fill.svg" alt="Trabalho" title="Trabalho"></i>
-                            <i><img src="/templates/icon/geo-alt-fill.svg" alt="Nacional" title="Nacional"></i>
-                            <i><img src="/templates/icon/globe-americas.svg" alt="Internacional" title="Internacional"></i>
-                            <i><img src="/templates/icon/sunglasses.svg" alt="Lazer" title="Lazer"></i>
-                        </picture>
-                    </li>
-                    <li class="card__item">
-                        <h1>Destino: </h1>
-                        <h1>Data da viagem: </h1>
-                        <h1>Data da chegada: </h1>
-                        <picture>
-                            <i><img src="/icon/briefcase-fill.svg" alt="Trabalho" title="Trabalho"></i>
-                            <i><img src="/icon/geo-alt-fill.svg" alt="Nacional" title="Nacional"></i>
-                            <i><img src="/icon/globe-americas.svg" alt="Internacional" title="Internacional"></i>
-                            <i><img src="/icon/sunglasses.svg" alt="Lazer" title="Lazer"></i>
-                        </picture>
-                    </li>
-                    <li class="card__item">
-                        <h1>Destino: </h1>
-                        <h1>Data da viagem: </h1>
-                        <h1>Data da chegada: </h1>
-                        <picture>
-                            <i><img src="/icon/briefcase-fill.svg" alt="Trabalho" title="Trabalho"></i>
-                            <i><img src="/icon/geo-alt-fill.svg" alt="Nacional" title="Nacional"></i>
-                            <i><img src="/icon/globe-americas.svg" alt="Internacional" title="Internacional"></i>
-                            <i><img src="/icon/sunglasses.svg" alt="Lazer" title="Lazer"></i>
-                        </picture>
-                    </li>
-                    {% for chave_id, item in chaves.items() %}
+                    {% for key, value in chaves.items() %}
                         <li class="card__item">
-                            <h2>Destino: <span>{{ item[0] }}</span></h2>
-                            <h2>>Data da viagem: <span>{{ item[1] }}</span></h2>
-                            <h2>Data da chegada: <span>{{ item[2] }}</span></h2>
+                            <h1>Destino: <span>{{ value[0] }}</span></h1>
+                            <h1>Data da viagem: <span>{{ value[1] }}</span></h1>
+                            <h1>Data da chegada: <span>{{ value[2] }}</span></h1>
                             <picture>
-                                {{ item[3] }}
-                                {{ item[4] }}
+                                {{ value[3]|safe }}
+                                {{ value[4]|safe }}
                             </picture>
                         </li>
                     {% endfor %}
@@ -196,7 +132,7 @@
                     </div>
                     <div class="Adiciona__form__item">
                         <label class="Adiciona__label" for="data_ida">Data de partida: </label>
-                        <input type="date" id="data_ida" class="Adiciona__input">
+                        <input id="data_ida" name="data_ida" class="Adiciona__input" type="date">
                     </div>
                     <div class="Adiciona__form__item">
                         <label class="Adiciona__label" for="data_volta">Data de retorno: </label>
@@ -214,9 +150,8 @@
                         <input type="checkbox" id="lazer" name="lazer" placeholder="Tipo 2">
                         <label for="lazer">lazer</label>
                     </div>
+                    <button type="submit">Adicionar Viagem</button>
                 </form>
-                <button type="submit">Adicionar Viagem</button>
-            </form>
             </div>
         </div>
     </section>  

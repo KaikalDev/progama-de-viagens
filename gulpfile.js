@@ -12,7 +12,7 @@ function scripts() {
 function styles() {
     return gulp.src('./src/stayle/*.scss')
         .pipe(sass({ outputStyle: 'compressed' }))
-        .pipe(gulp.dest('./dist/css'));
+        .pipe(gulp.dest('./static/css'));
 }
 
 function images() {

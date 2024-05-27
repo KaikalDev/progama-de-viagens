@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LKR - Viagens</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="title">LKR - Viagens</h1>
+            <ul class="header__list">
+                <li class="header__list__item">
+                    <a class="button" href="/login">LOGIN</a>
+                </li>
+                <li class="header__list__item">
+                    <a class="button" href="/cadastro">CADASTRO</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <hr>
+    <section class="cadastro cadastro--is-active">
+        <div class="container">
+            <div class="container__cadastro">
+                <form method="POST" action="/cadastro">
+                    <h1 class="title">Cadastro</h1>
+                    {% if comfirmacao %}
+                        <h3>Senha incompativel</h3>    
+                    {% endif %}
+                    {% if usuarioExiste %}
+                        <h3>Usuario ja utilizado</h3>    
+                    {% endif %}
+                    <ul class="cadastro__form__input">
+                        <li class="cadastro__form__item">
+                            <label class="cadastro__label" for="usuario">Digite seu usuario: </label>
+                            <input class="cadastro__input" name="usuario" type="text" id="usuario">
+                        </li>
+                        <li class="cadastro__form__item">
+                            <label class="cadastro__label" for="email">Digite seu E-mail: </label>
+                            <input class="cadastro__input" name="email" type="email" id="email">
+                        </li>
+                        <li class="cadastro__form__item">
+                            <label class="cadastro__label" for="senha">Digite sua senha: </label>
+                            <input class="cadastro__input" name="senha" type="text" id="senha">
+                        </li>
+                        <li class="cadastro__form__item">
+                            <label class="cadastro__label" for="c_senha">Comfirme sua senha: </label>
+                            <input type="password" name="c_senha" id="c_senha">
+                        </li>
+                    </ul>
+                    <div class="cadastro__form__btn">
+                        <button class="cadastro__form__btn__button button" type="submit">cadastrar</button>
+                        <button  class="cadastro__form__btn__a" type="button"><a href="/login" class="cadastro__form__btn__a" >Ja tem um cadastro ?</a></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <section class="header__cards">
+        <div class="container">
+            <div class="card__header">
+                <ul class="card__header__lista">
+                    <li class="card__header__lista__item">
+                        <label class="card__header__lista__label" for="filtro">Ordenar: </label>
+                        <select class="card__header__lista__select" name="filtro" id="filtro">
+                            <option value="0"></option>
+                            <option value="1">Data de partida</option>
+                            <option value="2">Data de chegada</option>
+                            <option value="3">Distino</option>
+                        </select>
+                    </li>
+                    <li class="card__header__lista__item">
+                        <label class="card__header__lista__label" for="filtro">Filtrar: </label>
+                        <select class="card__header__lista__select" name="filtro" id="filtro">
+                            <option value="0"></option>
+                            <option value="1">Internacionais</option>
+                            <option value="2">Nacionais</option>
+                            <option value="3">Trabalho</option>
+                            <option value="4">Lazer</option>
+                        </select>
+                    </li>
+                    <li class="card__header__lista__item">
+                        <button class="card__header__lista__button button">+ Adicionar viagem</button>
+                    </li>
+                </ul>
+            </div>
+            <div class="card">
+                <ul class="card__lista">
+                    {% for item in lista %}
+                        <li class="card__item">
+                            <h1>Destino: <span>{{ item[1] }}</span></h1>
+                            <h1>Data da viagem: <span>{{ item[2] }}</span></h1>
+                            <h1>Data da chegada: <span>{{ item[3] }}</span></h1>
+                            <picture>
+                                {{ item[4]|safe }}
+                                {{ item[5]|safe }}
+                            </picture>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </section>
+
+<script src="/static/js/main.js"></script>
+</body>
+</html>

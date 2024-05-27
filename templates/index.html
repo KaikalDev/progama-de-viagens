@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LKR - Viagens</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="title">LKR - Viagens</h1>
+            <ul class="header__list">
+                <li class="header__list__item">
+                    <a class="header__list__a button" href="/login">LOGIN</a>
+                </li>
+                <li class="header__list__item">
+                    <a class="header__list__a button" href="/cadastro">CADASTRO</a>
+                </li>
+                {% if login %}
+                <li class="header__list__item">
+                    <i class="header__list__item__icon"><img src="/static/icon/person-circle.svg" alt=""></i>
+                    <h3 class="header__list__item__user">{{ usuario }}</h3>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </header>
+    <hr> 
+    <section class="header__cards">
+        <div class="container">
+            <div class="card__header">
+                <ul class="card__header__lista">
+                    <li class="card__header__lista__item">
+                        <label class="card__header__lista__label" for="filtro">Ordenar: </label>
+                        <select class="card__header__lista__select" name="filtro" id="filtro">
+                            <option value="0"></option>
+                            <option value="1">Data de partida</option>
+                            <option value="2">Data de chegada</option>
+                            <option value="3">Distino</option>
+                        </select>
+                    </li>
+                    <li class="card__header__lista__item">
+                        <label class="card__header__lista__label" for="filtro">Filtrar: </label>
+                        <select class="card__header__lista__select" name="filtro" id="filtro">
+                            <option value="0"></option>
+                            <option value="1">Internacionais</option>
+                            <option value="2">Nacionais</option>
+                            <option value="3">Trabalho</option>
+                            <option value="4">Lazer</option>
+                        </select>
+                    </li>
+                    <li class="card__header__lista__item">
+                        <a class="button" href="/adiciona">+ Adicionar viagem</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card">
+                <ul class="card__lista">
+                    {% for item in lista %}
+                        <li id="{{ item[0] }}" class="card__item">
+                            <div class="card__item__ifo">
+                                <h1>Destino: <span>{{ item[1] }}</span></h1>
+                                <h1>Data da viagem: <span>{{ item[2] }}</span></h1>
+                                <h1>Data da chegada: <span>{{ item[3] }}</span></h1>
+                                <picture>
+                                    <i><img title="{{ item[4] }}" src="/static/icon/{{ item[4] }}.svg" alt="{{ item[4] }}"></i>
+                                    <i><img title="{{ item[5] }}" src="/static/icon/{{ item[5] }}.svg" alt="{{ item[5] }}"></i>
+                                </picture>
+                            </div>
+                            <div class="card__item__buttons">
+                                <form action="/copy" method="post">
+                                    <input type="hidden" name="id" value="{{ item[0] }}">
+                                    <button class="card__item__buttons__btn" type="submit" title="Copiar"><i><img src="/static/icon/copy.svg" alt=""></i></button>
+                                </form>
+                                <form action="/edit" method="post">
+                                    <input type="hidden" name="id" value="{{ item[0] }}">
+                                    <button class="card__item__buttons__btn" type="submit" title="Editar"><i><img src="/static/icon/pen-fill.svg" alt=""></i></button>
+                                </form>
+                                <form action="/delet" method="post">
+                                    <input type="hidden" name="id" value="{{ item[0] }}">
+                                    <button class="card__item__buttons__btn" type="submit" title="Deletar"><i><img src="/static/icon/trash-fill.svg" alt=""></i></button>
+                                </form>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </section>
+
+<script src="/static/js/main.js"></script>
+</body>
+</html>

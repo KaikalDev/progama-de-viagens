@@ -15,12 +15,9 @@ def arrumaData(data):
 def adicionaLista(user):
     verificaArquivo(user)  # Ajuste para verificar o arquivo no diretório do usuário
     df = pd.read_excel(f'dados/{user}/dados.xlsx')  # Leitura do arquivo no diretório do usuário
-    linhas = len(df)
-    df.set_index('Indice', inplace=True)
-    for i in range(1, linhas+1):
-        item = [i]
-        dados = list(df.loc[i])
-        item.extend(dados)
+    linhaId = list(df['Indice'])
+    for id in linhaId:
+        item = list(df[df['Indice'] == id].values.flatten())
         lista.append(item)
 
 def limpaLista(lista):
@@ -41,10 +38,20 @@ def verificaArquivo(user):
         df = pd.DataFrame(columns=['Indice', 'Destino', 'Data Ida', 'Data Volta', 'Tipo1', 'Tipo2'])
         df.to_excel(f'dados/{user}/dados.xlsx', index=False)
 
+@app.route('/')
+def index():
+    global server_started
+    if server_started:
+        server_started = False
+        return redirect(url_for('login'))
+    if 'logged_in' not in session or not session['logged_in']:
+        return redirect(url_for('login'))
+    return render_template('index.html', lista=lista, login=True, usuario=session['username'])
+
 @app.route('/adiciona', methods=['GET', 'POST'])
 def adiciona_item():
     if request.method == 'POST':
-        ID = new_id(f'dados/{session['username']}/dados.xlsx')
+        ID = new_id(f"dados/{session['username']}/dados.xlsx")
         destino = request.form.get('destino')
         data_ida = arrumaData(request.form.get('data_ida'))
         data_volta = arrumaData(request.form.get('data_volta'))
@@ -62,8 +69,8 @@ def adiciona_item():
             tipo2 = 'lazer'
         if destino:
             new_row = pd.DataFrame([[ID, destino, data_ida, data_volta, tipo1, tipo2]], columns=['Indice', 'Destino', 'Data Ida', 'Data Volta', 'Tipo1', 'Tipo2'])
-            new_df = pd.read_excel(f'dados/{session['username']}/dados.xlsx')
-            pd.concat([new_df, new_row], ignore_index=True).to_excel(f'dados/{session['username']}/dados.xlsx', index=False)
+            new_df = pd.read_excel(f"dados/{session['username']}/dados.xlsx")
+            pd.concat([new_df, new_row], ignore_index=True).to_excel(f"dados/{session['username']}/dados.xlsx", index=False)
             lista.append([ID, destino, data_ida, data_volta, tipo1, tipo2])
 
         return redirect(url_for('index'))
@@ -74,7 +81,7 @@ def copy():
     id = request.form.get('id')
     if id is not None:
         id = int(id)
-        arquivo = f'dados/{session['username']}/dados.xlsx'
+        arquivo = f"dados/{session['username']}/dados.xlsx"
         
         df = pd.read_excel(arquivo)
         linhaId = df[df['Indice'] == id].values.flatten()
@@ -180,15 +187,6 @@ def add_edit():
         return redirect('/')
     return render_template('index.html')
 
-@app.route('/')
-def index():
-    global server_started
-    if server_started:
-        server_started = False
-        return redirect(url_for('login'))
-    if 'logged_in' not in session or not session['logged_in']:
-        return redirect(url_for('login'))
-    return render_template('index.html', lista=lista, login=True, usuario=session['username'])
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -238,11 +236,38 @@ def cadastro():
         return redirect(url_for('login'))
     return render_template('cadastro.html')
 
-@app.route('/logout')
+@app.route('/logout', methods=['POST'])
 def logout():
     session.pop('logged_in', None)
     session.pop('username', None)
     return redirect(url_for('login'))
+
+@app.route('/ordenarFiltar', methods=['POST'])
+def ordenarFiltar():
+    ordenar = request.form.get('ordem')
+    filtrar = request.form.get('filtrar')
+
+    match ordenar:
+        case 0:
+            pass
+        case 1:
+            ordenarDP()
+        case 2:
+            ordenarDR()
+        case 3:
+            ordenarDestino()
+    match filtrar:
+        case 0:
+            pass
+        case 1:
+            filtrarN()
+        case 2:
+            filtrarIN()
+        case 3:
+            filtrarT()
+        case 4:
+            filtrarL()
+
 
 if __name__ == '__main__':
     app.run(debug=True)

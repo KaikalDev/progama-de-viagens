@@ -1,21 +1,3 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const buttons = document.querySelectorAll('[data-btn]')
-
-    for (let i = 0; i < buttons.length; i++) {
-        buttons[i].addEventListener('click', function(botao) {
-            const id = botao.target.getAttribute('data-btn');
-            const section = document.querySelector(`[data-sec=${id}]`)
-            const cla = section.classList
-            const active = `${cla[0]}--is-active`;
-            if (cla.contains(active)) {
-                cla.remove(active);
-            } else {
-                escondetodasSections(id)
-                cla.add(active);
-            }
-        })
-    }
-})
 document.addEventListener("DOMContentLoaded", function() {
     var data_ida = document.getElementById("data_ida");
     
@@ -58,3 +40,10 @@ function desmaraCheckBoxTipo1(selectedCheckboxId) {
         }
     });
 }
+
+document.getElementById('filtro').addEventListener('change', function() {
+    this.form.submit();
+})
+document.getElementById('ordem').addEventListener('change', function() {
+    this.form.submit();
+})

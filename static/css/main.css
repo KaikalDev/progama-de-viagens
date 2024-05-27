@@ -34,7 +34,9 @@
 .header__list__item__user {
   font-size: 18px;
 }
-
+.card__header__form{
+  display: flex;
+}
 .card__header {
   margin-top: 24px;
 }

@@ -14,16 +14,24 @@
         <div class="container">
             <h1 class="title">LKR - Viagens</h1>
             <ul class="header__list">
-                <li class="header__list__item">
-                    <a class="header__list__a button" href="/login">LOGIN</a>
-                </li>
-                <li class="header__list__item">
-                    <a class="header__list__a button" href="/cadastro">CADASTRO</a>
-                </li>
+                {% if login == False%}
+                    <li class="header__list__item">
+                        <a class="header__list__a button" href="/login">LOGIN</a>
+                    </li>
+                    <li class="header__list__item">
+                        <a class="header__list__a button" href="/cadastro">CADASTRO</a>
+                    </li>
+                {% endif %}
                 {% if login %}
                 <li class="header__list__item">
                     <i class="header__list__item__icon"><img src="/static/icon/person-circle.svg" alt=""></i>
                     <h3 class="header__list__item__user">{{ usuario }}</h3>
+                    <form action="/logout" method="post">
+                        <button>
+                            <i title="logout" lass="header__list__item__icon"><img src="/static/icon/door-open-fill.svg" alt=""></i>
+                        </button>
+                    </form>
+                    
                 </li>
                 {% endif %}
             </ul>
@@ -34,28 +42,30 @@
         <div class="container">
             <div class="card__header">
                 <ul class="card__header__lista">
-                    <li class="card__header__lista__item">
-                        <label class="card__header__lista__label" for="filtro">Ordenar: </label>
-                        <select class="card__header__lista__select" name="filtro" id="filtro">
-                            <option value="0"></option>
-                            <option value="1">Data de partida</option>
-                            <option value="2">Data de chegada</option>
-                            <option value="3">Distino</option>
-                        </select>
-                    </li>
-                    <li class="card__header__lista__item">
-                        <label class="card__header__lista__label" for="filtro">Filtrar: </label>
-                        <select class="card__header__lista__select" name="filtro" id="filtro">
-                            <option value="0"></option>
-                            <option value="1">Internacionais</option>
-                            <option value="2">Nacionais</option>
-                            <option value="3">Trabalho</option>
-                            <option value="4">Lazer</option>
-                        </select>
-                    </li>
-                    <li class="card__header__lista__item">
-                        <a class="button" href="/adiciona">+ Adicionar viagem</a>
-                    </li>
+                    <form class="card__header__form" action="/ordenarFiltar" method="post">
+                        <li class="card__header__lista__item">
+                            <label class="card__header__lista__label" for="filtro">Ordenar: </label>
+                            <select onchange="this.form.submit()" class="card__header__lista__select" name="ordem" id="ordem">
+                                <option value="0"></option>
+                                <option value="1">Data de partida</option>
+                                <option value="2">Data de chegada</option>
+                                <option value="3">Distino</option>
+                            </select>
+                        </li>
+                        <li class="card__header__lista__item">
+                            <label class="card__header__lista__label" for="filtro">Filtrar: </label>
+                            <select onchange="this.form.submit()" class="card__header__lista__select" name="filtro" id="filtro">
+                                <option value="0"></option>
+                                <option value="1">Internacionais</option>
+                                <option value="2">Nacionais</option>
+                                <option value="3">Trabalho</option>
+                                <option value="4">Lazer</option>
+                            </select>
+                        </li>
+                        <li class="card__header__lista__item">
+                            <a class="button" href="/adiciona">+ Adicionar viagem</a>
+                        </li>
+                    </form>
                 </ul>
             </div>
             <div class="card">

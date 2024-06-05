@@ -1,0 +1,62 @@
+@use 'variaveis';
+
+.cadastro {
+    backdrop-filter: blur(2px);
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    display: none;
+
+    &--is-active{
+        display: flex;
+    }
+    
+    .container{
+        background-color: rgba(255, 255, 255, .7);
+        box-shadow: 0px 0px 20px 1px #000;
+
+        &__cadastro{
+            margin-inline: 30px;
+            padding-inline: 10px;
+            display: flex;
+            flex-direction: column;
+            padding-block: 20vh;
+        }
+    }
+
+    .title{
+        margin-bottom: 12px;
+    }
+    &__form{
+        
+        &__input{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            list-style: none;
+        }
+        &__item{
+            display: flex;
+            flex-direction: column;
+        }
+        &__btn{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+
+            &__button{
+                margin-block: 10px;
+            }
+            &__a{
+                background-color: transparent;
+                text-decoration: underline;
+                border: none;
+                color: black;
+                &:hover{
+                    color: blueviolet;
+                }
+            }
+        }
+    }
+}

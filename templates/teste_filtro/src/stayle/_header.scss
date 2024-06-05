@@ -1,0 +1,43 @@
+@use 'variaveis';
+
+.header {
+    margin-top: 16px;
+    margin-bottom: 16px;
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 30px;
+    }
+
+    &__list{
+        display: flex;
+        list-style: none;
+        align-items: center;
+
+        &__a{
+            color: white;
+            text-decoration: none;
+            transition: all ease .3s;
+            &:hover{
+                font-size: 23px;
+                transition: all ease .3s;
+            }
+        }
+
+        &__item{
+            margin-left: 10px;
+            align-items: center;
+            display: flex;
+            &__icon{
+                margin-right: 4px;
+                font-size: 20px;
+            }
+            &__user{
+                font-size: 18px;
+            }
+        }
+
+    }
+}

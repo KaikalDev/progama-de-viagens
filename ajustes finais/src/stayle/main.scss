@@ -1,0 +1,39 @@
+@import 'variaveis';
+@import 'adiciona';
+@import 'login';
+@import 'cadastro';
+@import 'cards';
+@import 'header';
+@import 'roteiro';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+  }
+  
+  body {
+    color: #31241E;
+    background-color: #F6F4F3;
+  }
+  
+  .container {
+    max-width: 1024px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  .button {
+    background-color: #85725B;
+    color: #fff;
+    border: none;
+    padding: 8px;
+    padding-inline: 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all ease 0.5s;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  

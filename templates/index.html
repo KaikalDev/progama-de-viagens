@@ -96,7 +96,7 @@
                     {% for item in lista %}
                         <li id="{{ item[0] }}" class="card__item">
                             <div class="card__item__ifo">
-                                <h1>
+                                <h1 class="Titulo_card">
                                     Destino: <span>{{ item[1] }}</span>
                                     <form action="/roteiro" method="post">
                                         <input type="hidden" name="id" value="{{ item[0] }}">

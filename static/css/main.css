@@ -125,7 +125,13 @@
   border: none;
   background-color: transparent;
   cursor: pointer;
+  margin-left: 10px;
 }
+.card__item__buttons__btn:hover {
+  border: 1px solid black;
+  padding: 2px;
+}
+
 .card__item:hover .card__item__buttons i {
   margin-top: 5px;
 }
@@ -322,6 +328,11 @@
 
 .roteiro__lista__item{
   margin-top: 10px;
+}
+
+.Titulo_card{
+  display: flex;
+  
 }
 
 * {

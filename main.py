@@ -56,7 +56,7 @@ def new_id(planilha):# Gera um novo ID, pegando o ultimo da planilha e somando m
     return id
 
 def listaDestinos():# Faz uma lista com todos os destinos adicionados anteriormente
-    df = pd.read_excel(f'dados/{session['username']}/dados.xlsx')
+    df = pd.read_excel(f'dados/{session["username"]}/dados.xlsx')
 
     destinos = list(df['Destino'])
     d=[]
@@ -143,6 +143,10 @@ def login():
         user = request.form.get('usuario')
         senha = request.form.get('senha')
 
+        # caso não tenha nenhum usuario cadastrado, redireciona para cadastro
+        if not os.path.exists('dados/usuarios.xlsx'):
+            return render_template('cadastro.html')     
+
         # fazer uma lista de usuarios e senhas (onde o index do usuario seja igual ao da senha)
         df = pd.read_excel('dados/usuarios.xlsx')
         Usuarios = list(df['Usuario'])
@@ -155,7 +159,7 @@ def login():
 
         if user.lower() in listaUsuarios: # Verifica se o usuario existe
             # pega o index do usuarios é recolhe a senha correspondente
-            posicaoSenha = listaUsuarios.index(user)
+            posicaoSenha = listaUsuarios.index(user.lower())
             senhaDoUsuario = str(listaSenha[posicaoSenha])
             if senha == senhaDoUsuario: # Verifica se a senha e compativel
                 # altera as variaveis de login
